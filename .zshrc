@@ -9,13 +9,14 @@ export ZSH="/Users/james.wells/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
+POWERLEVEL9K_MODE="nerdfont-complete"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-POWERLEVEL9K_MODE="nerdfont-complete"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -134,6 +135,12 @@ POWERLEVEL9K_CUSTOM_AWSPROF_BACKGROUND="yellow"
 function aws_prof {
   # aws_icon='\uf52c'
   # cloud_icon='\f52d'
+  # if [[ "$AWS_PROFILE" == ""]] && [[ "${AWS_DEFAULT_PROFILE}" != ""]]; then
+  #   export AWS_PROFILE=${AWS_DEFAULT_PROFILE}
+  # fi
+  if [[ ("$AWS_PROFILE" == "") && ("${AWS_DEFAULT_PROFILE}" != "") ]]; then
+    export AWS_PROFILE=${AWS_DEFAULT_PROFILE}
+  fi
   if [[ "${AWS_PROFILE}" != "" ]]; then
     if grep -q $AWS_PROFILE /Users/james.wells/.aws/credentials; then
       color='%F{black}'
@@ -152,7 +159,8 @@ POWERLEVEL9K_BATTERY_DISCONNECTED='$DEFAULT_COLOR'
 POWERLEVEL9K_BATTERY_LOW_THRESHOLD='10'
 POWERLEVEL9K_BATTERY_LOW_COLOR='red'
 POWERLEVEL9K_BATTERY_ICON=`prompt_zsh_battery_level`
-
+POWERLEVEL9K_BATTERY_VERBOSE='false'
+POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(darkred orange4 yellow4 yellow4 chartreuse3 green3 green4 darkgreen)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_awsprof time date battery)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv newline vcs)
 
@@ -177,17 +185,7 @@ export NVM_DIR="$HOME/.nvm"
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/james.wells/Projects/VWFS/mps-portal-api/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/james.wells/Projects/VWFS/mps-portal-api/node_modules/tabtab/.completions/slss.zsh
 
-# vscode 
-function code {
-    if [[ $# = 0 ]]
-    then
-        open -a "Visual Studio Code"
-    else
-        local argPath="$1"
-        [[ $1 = /* ]] && argPath="$1" || argPath="$PWD/${1#./}"
-        open -a "Visual Studio Code" "$argPath"
-    fi
-}
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/james.wells/Projects/PDev/K8S/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/james.wells/Projects/PDev/K8S/google-cloud-sdk/path.zsh.inc'; fi
 
