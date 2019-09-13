@@ -161,7 +161,7 @@ POWERLEVEL9K_BATTERY_LOW_COLOR='red'
 POWERLEVEL9K_BATTERY_ICON=`prompt_zsh_battery_level`
 POWERLEVEL9K_BATTERY_VERBOSE='false'
 POWERLEVEL9K_BATTERY_LEVEL_BACKGROUND=(darkred orange4 yellow4 yellow4 chartreuse3 green3 green4 darkgreen)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_awsprof newline time date battery)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(custom_awsprof newline battery)
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(dir virtualenv newline vcs)
 
 export PATH="/Users/james.wells/go/bin/:/Users/james.wells/.pyenv/bin:$PATH"
